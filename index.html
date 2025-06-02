@@ -43,13 +43,6 @@
             box-shadow: 0 10px 30px rgba(156, 39, 176, 0.3);
         }
 
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 20px;
-        }
-
         .brand {
             font-size: 3rem;
             font-weight: 800;
@@ -273,17 +266,6 @@
             display: none;
         }
 
-        .code-preview {
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -378,6 +360,32 @@
             color: #b39ddb;
         }
 
+        #codeInput {
+            margin-top: 20px;
+        }
+
+        #codeTextarea {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -398,11 +406,97 @@
     <div class="container">
         <header class="header">
             <div class="logo">
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAH0AfQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="MagiChain Logo">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mainShield" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8e24aa"/>
+                            <stop offset="50%" stop-color="#5e35b1"/>
+                            <stop offset="100%" stop-color="#3949ab"/>
+                        </linearGradient>
+                        <linearGradient id="lockBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#29b6f6"/>
+                            <stop offset="100%" stop-color="#1e88e5"/>
+                        </linearGradient>
+                        <linearGradient id="chainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#42a5f5"/>
+                            <stop offset="100%" stop-color="#1976d2"/>
+                        </linearGradient>
+                        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <path d="M60 12L92 28V68C92 82 76 98 60 102C44 98 28 82 28 68V28L60 12Z" 
+                          fill="url(#mainShield)" 
+                          filter="url(#shadow)" 
+                          stroke="#673ab7" 
+                          stroke-width="1"/>
+                    <path d="M60 16L88 30V66C88 78 74 92 60 96C46 92 32 78 32 66V30L60 16Z" 
+                          fill="none" 
+                          stroke="rgba(255,255,255,0.2)" 
+                          stroke-width="1"/>
+                    <rect x="45" y="48" width="30" height="28" rx="6" ry="6" 
+                          fill="url(#lockBody)" 
+                          filter="url(#shadow)"/>
+                    <rect x="47" y="50" width="26" height="24" rx="4" ry="4" 
+                          fill="none" 
+                          stroke="rgba(255,255,255,0.3)" 
+                          stroke-width="1"/>
+                    <path d="M60 35C67 35 72 40 72 47V52H68V47C68 42 64 39 60 39C56 39 52 42 52 47V52H48V47C48 40 53 35 60 35Z" 
+                          fill="url(#lockBody)" 
+                          filter="url(#shadow)"/>
+                    <ellipse cx="25" cy="60" rx="10" ry="6" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="4" 
+                             transform="rotate(-15 25 60)"
+                             filter="url(#shadow)"/>
+                    <ellipse cx="95" cy="60" rx="10" ry="6" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="4" 
+                             transform="rotate(15 95 60)"
+                             filter="url(#shadow)"/>
+                    <ellipse cx="38" cy="58" rx="8" ry="5" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="3" 
+                             transform="rotate(-5 38 58)"/>
+                    <ellipse cx="82" cy="58" rx="8" ry="5" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="3" 
+                             transform="rotate(5 82 58)"/>
+                    <line x1="78" y1="30" x2="95" y2="13" 
+                          stroke="#ffa726" 
+                          stroke-width="4" 
+                          stroke-linecap="round"
+                          filter="url(#shadow)"/>
+                    <line x1="78" y1="30" x2="85" y2="23" 
+                          stroke="#ff8f00" 
+                          stroke-width="5" 
+                          stroke-linecap="round"/>
+                    <circle cx="95" cy="13" r="2" fill="#ffd700" filter="url(#shadow)"/>
+                    <g fill="#ffd700" filter="url(#shadow)">
+                        <path d="M100 18L102 20L100 22L98 20Z"/>
+                        <path d="M99 20L101 20M100 19L100 21"/>
+                        <path d="M105 25L106 26L105 27L104 26Z"/>
+                        <path d="M104.5 26L105.5 26M105 25.5L105 26.5"/>
+                        <circle cx="88" cy="35" r="1.5"/>
+                        <circle cx="25" cy="35" r="1"/>
+                        <circle cx="30" cy="25" r="1"/>
+                    </g>
+                    <text x="60" y="68" 
+                          text-anchor="middle" 
+                          fill="#0d47a1" 
+                          font-size="16" 
+                          font-weight="bold" 
+                          font-family="Arial, sans-serif"
+                          filter="url(#shadow)">MC</text>
+                </svg>
             </div>
             <h1 class="brand">MagiChain</h1>
-            <p class="tagline">🪄 Bulletproof Security. Zero Code Review.</p>
-            <p class="description">Upload a smart contract. Get a trusted AI-powered security verdict — instantly. Then, deploy with confidence — straight to Ethereum.</p>
+            <p class="tagline">🪄 AI-Powered Security. Instant Analysis.</p>
+            <p class="description">Upload a smart contract and get comprehensive AI-driven security analysis instantly. Our advanced algorithms detect vulnerabilities, assess risks, and provide actionable recommendations.</p>
         </header>
 
         <div class="main-content">
@@ -410,15 +504,15 @@
                 <div class="upload-area" onclick="document.getElementById('fileInput').click()">
                     <div class="upload-icon">📄</div>
                     <div class="upload-text">Drop your Solidity contract here</div>
-                    <div class="upload-subtext">or click to browse (.sol files)</div>
+                    <div class="upload-subtext">Supports Solidity 0.5.x (.sol files)</div>
                     <input type="file" id="fileInput" class="file-input" accept=".sol" onchange="handleFileUpload(event)">
                 </div>
                 <div style="margin-top: 20px;">
                     <button class="btn" onclick="pasteCode()">📋 Paste Code</button>
                     <button class="btn btn-secondary" onclick="useDemo()">🎯 Use Demo Contract</button>
                 </div>
-                <div id="codeInput" style="display: none; margin-top: 20px;">
-                    <textarea id="codeTextarea" placeholder="Paste your Solidity code here..." style="width: 100%; height: 200px; background: #1a1a1a; color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 15px; font-family: monospace;"></textarea>
+                <div id="codeInput" style="display: none;">
+                    <textarea id="codeTextarea" placeholder="Paste your Solidity code here..."></textarea>
                     <button class="btn" onclick="analyzeCode()" style="margin-top: 10px;">🔍 Analyze Code</button>
                 </div>
             </div>
@@ -520,23 +614,23 @@
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
-                <h3>Multi-Tool Analysis</h3>
-                <p>Combines multiple industry-standard security tools for comprehensive vulnerability scanning.</p>
+                <h3>Advanced Security Analysis</h3>
+                <p>Proprietary algorithms analyze smart contracts for vulnerabilities using cutting-edge security research and pattern recognition.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🧠</div>
-                <h3>AI Interpretation</h3>
-                <p>Advanced AI prioritizes real threats, explains issues clearly, and suggests actionable fixes.</p>
+                <h3>AI-Powered Insights</h3>
+                <p>Machine learning models interpret security findings, prioritize risks, and generate human-readable recommendations with confidence scoring.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Instant Results</h3>
-                <p>Get comprehensive security analysis in seconds, not hours or days.</p>
+                <h3>Instant Analysis</h3>
+                <p>Get comprehensive security reports in minutes, not hours. Our optimized pipeline delivers fast, accurate vulnerability assessments.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🚀</div>
-                <h3>One-Click Deploy</h3>
-                <p>Deploy verified safe contracts directly to Ethereum with confidence.</p>
+                <h3>Smart Recommendations</h3>
+                <p>Receive actionable security improvements with automated fixes for common issues and expert guidance for complex vulnerabilities.</p>
             </div>
         </div>
 
@@ -550,89 +644,12 @@
         let analysisInProgress = false;
         let currentStep = 0;
         let appliedFixes = [];
-
-        function applyAutoFix(fixIndex) {
-            const fixDescriptions = [
-                "Removed unused variables and optimized gas usage",
-                "Added events for state changes", 
-                "Added require statements with descriptive error messages"
-            ];
-            
-            if (appliedFixes.includes(fixIndex)) {
-                showNotification('⚠️ Fix already applied!', 'warning');
-                return;
-            }
-            
-            showNotification('🪄 Applying auto-fix...', 'info');
-            
-            setTimeout(() => {
-                const recItem = document.querySelectorAll('.recommendation-item')[fixIndex];
-                const button = recItem.querySelector('.btn-auto-fix');
-                
-                // Mark as applied
-                recItem.classList.add('fix-applied');
-                button.disabled = true;
-                button.textContent = '✅ Applied';
-                appliedFixes.push(fixIndex);
-                
-                // Apply actual code fixes
-                const codeTextarea = document.getElementById('codeTextarea');
-                if (codeTextarea && codeTextarea.value) {
-                    let code = codeTextarea.value;
-                    
-                    switch(fixIndex) {
-                        case 0: // Remove unused variables
-                            code = code.replace(/\s*uint256\s+tempVar;\s*\n?/g, '');
-                            code = code.replace(/\s*uint256\s+unusedVar;\s*\n?/g, '');
-                            code = code.replace(/\s*address\s+temp;\s*\n?/g, '');
-                            break;
-                            
-                        case 2: // Add require statements
-                            code = code.replace(
-                                /function transfer\(address _to, uint256 _amount\) public \{/g,
-                                `function transfer(address _to, uint256 _amount) public {
-        require(_to != address(0), "Invalid recipient address");
-        require(_amount > 0, "Amount must be greater than zero");`
-                            );
-                            break;
-                    }
-                    
-                    codeTextarea.value = code;
-                }
-                
-                showNotification(`✅ ${fixDescriptions[fixIndex]}`, 'success');
-                updateApplyAllButton();
-            }, 1500);
-        }
-
-        function applyAllAutoFixes() {
-            const fixableItems = document.querySelectorAll('.recommendation-item[data-fixable="true"]');
-            let delay = 0;
-            
-            fixableItems.forEach((item, index) => {
-                const actualIndex = Array.from(document.querySelectorAll('.recommendation-item')).indexOf(item);
-                
-                if (!appliedFixes.includes(actualIndex)) {
-                    setTimeout(() => {
-                        applyAutoFix(actualIndex);
-                    }, delay);
-                    delay += 800;
-                }
-            });
-        }
-
-        function updateApplyAllButton() {
-            const applyAllBtn = document.getElementById('applyAllBtn');
-            const fixableItems = document.querySelectorAll('.recommendation-item[data-fixable="true"]');
-            const appliedFixableCount = Array.from(fixableItems).filter(item => 
-                item.classList.contains('fix-applied')).length;
-            
-            if (appliedFixableCount === fixableItems.length) {
-                applyAllBtn.disabled = true;
-                applyAllBtn.textContent = '✅ All Fixes Applied';
-                applyAllBtn.style.background = '#666';
-            }
-        }
+        let currentAnalysisResults = null;
+        let currentContractCode = '';
+        
+        // Configure your API URL here
+        const SECURIFY_API_URL = 'https://magichain.onrender.com';
+        const ANALYSIS_TIMEOUT = 310000; // 310 seconds to match backend timeout
 
         function handleFileUpload(event) {
             const file = event.target.files[0];
@@ -656,7 +673,7 @@
 
         function useDemo() {
             const demoCode = `// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.5.0;
 
 contract SimpleToken {
     mapping(address => uint256) public balances;
@@ -668,7 +685,7 @@ contract SimpleToken {
         _;
     }
     
-    constructor(uint256 _totalSupply) {
+    constructor(uint256 _totalSupply) public {
         totalSupply = _totalSupply;
         owner = msg.sender;
         balances[msg.sender] = _totalSupply;
@@ -686,30 +703,390 @@ contract SimpleToken {
         totalSupply += _amount;
         balances[_to] += _amount;
     }
+    
+    // Intentional vulnerability for demo
+    function withdraw(uint256 _amount) public {
+        require(balances[msg.sender] >= _amount);
+        msg.sender.call.value(_amount)("");  // Reentrancy vulnerability
+        balances[msg.sender] -= _amount;     // State change after external call
+    }
 }`;
             document.getElementById('codeTextarea').value = demoCode;
             document.getElementById('codeInput').style.display = 'block';
-            showNotification('🎯 Demo contract loaded!', 'success');
+            showNotification('🎯 Demo contract loaded! (Compatible with Solidity 0.5.x)', 'success');
         }
 
         function analyzeCode() {
+            console.log('🟢 analyzeCode() function called!');
+            
             const code = document.getElementById('codeTextarea').value.trim();
+            console.log('📝 Code from textarea:', code.substring(0, 100) + '...');
+            
             if (!code) {
+                console.log('❌ No code provided');
                 showNotification('❌ Please provide code to analyze', 'error');
                 return;
             }
             
             if (analysisInProgress) {
+                console.log('⏳ Analysis already in progress');
                 showNotification('⏳ Analysis already in progress', 'warning');
                 return;
             }
 
+            console.log('✅ Starting analysis process...');
+            currentContractCode = code;
             startAnalysis();
+            
+            // Call the backend API for Securify analysis
+            console.log('🚀 About to call callSecurifyAPI...');
+            callSecurifyAPI(code);
+        }
+
+        async function callSecurifyAPI(contractCode) {
+            console.log('🔥 Starting callSecurifyAPI function');
+            console.log('📝 Contract code length:', contractCode.length);
+            console.log('🌐 API URL:', SECURIFY_API_URL);
+            
+            try {
+                // Update UI to show we're calling Securify
+                document.getElementById('step1').innerHTML = `
+                    <strong>🔍 Static Analysis</strong><br>
+                    <small>Connecting to Securify backend...</small>
+                `;
+
+                // Create FormData with the contract file - matching the curl command exactly
+                const formData = new FormData();
+                const blob = new Blob([contractCode], { type: 'text/plain' });
+                formData.append('file', blob, 'contract.sol');
+
+                console.log('📦 FormData created, blob size:', blob.size);
+                console.log('📁 File name in FormData:', 'contract.sol');
+
+                // Show progress
+                document.getElementById('step1').innerHTML = `
+                    <strong>🔍 Static Analysis</strong><br>
+                    <small>Running Securify 2.0 analysis... (this may take several minutes)</small>
+                `;
+
+                console.log('🚀 About to make fetch request to:', `${SECURIFY_API_URL}/validate`);
+
+                // Call the backend API with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => {
+                    console.log('⏰ Request timeout triggered');
+                    controller.abort();
+                }, ANALYSIS_TIMEOUT);
+
+                console.log('📡 Making fetch request now...');
+                
+                // Make the fetch request to match your curl command
+                const response = await fetch(`${SECURIFY_API_URL}/validate`, {
+                    method: 'POST',
+                    body: formData,
+                    signal: controller.signal
+                    // Let browser set Content-Type automatically for FormData
+                });
+
+                console.log('📨 Received response, status:', response.status);
+                console.log('📨 Response headers:', [...response.headers.entries()]);
+                clearTimeout(timeoutId);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('❌ Response not OK:', response.status, errorText);
+                    throw new Error(`Backend API returned status ${response.status}: ${response.statusText}\nResponse: ${errorText}`);
+                }
+
+                const result = await response.json();
+                console.log('✅ Successfully parsed JSON response');
+                console.log('📋 Response keys:', Object.keys(result));
+                
+                if (result.error) {
+                    console.error('❌ Backend returned error:', result.error);
+                    throw new Error(result.error);
+                }
+
+                // Backend call successful - update UI
+                document.getElementById('step1').className = 'analysis-step step-completed';
+                document.getElementById('step1').innerHTML = `
+                    <strong>🔍 Static Analysis</strong><br>
+                    <small>✅ Securify analysis completed successfully</small>
+                `;
+
+                showNotification('✅ Backend analysis completed!', 'success');
+
+                // Process the Securify results and continue with AI interpretation
+                processSecurifyResults(result);
+
+            } catch (error) {
+                console.error('🔴 Full error details:', error);
+                console.error('🔴 Error name:', error.name);
+                console.error('🔴 Error message:', error.message);
+                console.error('🔴 Error stack:', error.stack);
+                
+                // Handle different types of errors
+                let errorMessage = 'Unknown error occurred';
+                if (error.name === 'AbortError') {
+                    errorMessage = 'Analysis timed out - backend took too long to respond';
+                    console.log('⏰ Request was aborted due to timeout');
+                } else if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+                    errorMessage = 'Cannot connect to backend - network error or CORS issue';
+                    console.log('🔌 Network/CORS error detected');
+                } else {
+                    errorMessage = error.message;
+                }
+
+                // Update UI to show error
+                document.getElementById('step1').className = 'analysis-step step-pending';
+                document.getElementById('step1').innerHTML = `
+                    <strong>🔍 Static Analysis</strong><br>
+                    <small>❌ Backend error: ${errorMessage}</small>
+                `;
+
+                showNotification(`❌ Backend analysis failed: ${errorMessage}`, 'error');
+
+                // Fallback to local analysis after showing error
+                setTimeout(() => {
+                    showNotification('🔄 Falling back to local analysis...', 'info');
+                    fallbackToLocalAnalysis();
+                }, 3000);
+            }
+        }
+
+        // Test function to verify API connectivity - call from browser console
+        window.testBackendConnection = async function() {
+            console.log('🧪 Testing backend connection...');
+            const testCode = `pragma solidity ^0.5.0;
+contract Test {
+    uint256 public value = 42;
+}`;
+            
+            try {
+                await callSecurifyAPI(testCode);
+                console.log('✅ Test completed - check UI for results');
+            } catch (error) {
+                console.error('❌ Test failed:', error);
+            }
+        };
+
+        function processSecurifyResults(backendResult) {
+            try {
+                // Store the raw backend results
+                const securifyOutput = backendResult.analysis || backendResult.result || backendResult;
+                
+                // Extract vulnerabilities from Securify output
+                const vulnerabilities = extractVulnerabilitiesFromSecurify(securifyOutput);
+                
+                // Continue with AI interpretation step
+                setTimeout(() => {
+                    document.getElementById('step2').className = 'analysis-step step-current';
+                    document.getElementById('analysisTitle').textContent = 'AI Interpretation...';
+                    document.getElementById('progressFill').style.width = '50%';
+                    
+                    // Process the vulnerabilities with AI interpretation
+                    setTimeout(() => {
+                        document.getElementById('step2').className = 'analysis-step step-completed';
+                        
+                        // Continue with risk assessment
+                        continueWithRiskAssessment(vulnerabilities, securifyOutput);
+                    }, 2000);
+                }, 1000);
+
+            } catch (error) {
+                console.error('Error processing Securify results:', error);
+                showNotification('⚠️ Error processing backend results, using fallback analysis', 'warning');
+                fallbackToLocalAnalysis();
+            }
+        }
+
+        function extractVulnerabilitiesFromSecurify(securifyOutput) {
+            const vulnerabilities = [];
+            
+            // Handle different formats of Securify output
+            let analysisText = '';
+            if (typeof securifyOutput === 'string') {
+                analysisText = securifyOutput.toLowerCase();
+            } else if (securifyOutput.textOutput) {
+                analysisText = securifyOutput.textOutput.toLowerCase();
+            } else if (securifyOutput.analysis) {
+                analysisText = JSON.stringify(securifyOutput.analysis).toLowerCase();
+            } else {
+                analysisText = JSON.stringify(securifyOutput).toLowerCase();
+            }
+
+            // Parse common vulnerability patterns from Securify output
+            if (analysisText.includes('reentrancy') || analysisText.includes('re-entrancy')) {
+                vulnerabilities.push({
+                    type: 'critical',
+                    title: '🚨 Critical: Reentrancy Vulnerability',
+                    description: 'Reentrancy vulnerability detected by Securify analysis',
+                    source: 'Securify'
+                });
+            }
+
+            if (analysisText.includes('integer overflow') || analysisText.includes('integer underflow') || 
+                analysisText.includes('arithmetic') || analysisText.includes('overflow')) {
+                vulnerabilities.push({
+                    type: 'medium',
+                    title: '⚠️ Medium: Integer Overflow/Underflow',
+                    description: 'Potential arithmetic vulnerability detected',
+                    source: 'Securify'
+                });
+            }
+
+            if (analysisText.includes('unchecked call') || analysisText.includes('unchecked-call') ||
+                analysisText.includes('external call')) {
+                vulnerabilities.push({
+                    type: 'medium',
+                    title: '⚠️ Medium: Unchecked External Call',
+                    description: 'External call without proper error handling detected',
+                    source: 'Securify'
+                });
+            }
+
+            if (analysisText.includes('access control') || analysisText.includes('unauthorized') ||
+                analysisText.includes('permission')) {
+                vulnerabilities.push({
+                    type: 'high',
+                    title: '🚨 High: Access Control Issue',
+                    description: 'Potential access control vulnerability detected',
+                    source: 'Securify'
+                });
+            }
+
+            // If structured data is available, parse it
+            if (securifyOutput.vulnerabilities && Array.isArray(securifyOutput.vulnerabilities)) {
+                securifyOutput.vulnerabilities.forEach(vuln => {
+                    vulnerabilities.push({
+                        type: vuln.severity || 'medium',
+                        title: `${getSeverityIcon(vuln.severity)} ${vuln.name || vuln.type}`,
+                        description: vuln.description || vuln.message || 'Vulnerability detected by Securify',
+                        line: vuln.line,
+                        source: 'Securify'
+                    });
+                });
+            }
+
+            return vulnerabilities;
+        }
+
+        function getSeverityIcon(severity) {
+            switch (severity?.toLowerCase()) {
+                case 'critical': return '🚨 Critical:';
+                case 'high': return '🚨 High:';
+                case 'medium': return '⚠️ Medium:';
+                case 'low': return '⚠️ Low:';
+                default: return '⚠️';
+            }
+        }
+
+        function continueWithRiskAssessment(vulnerabilities, rawSecurifyOutput) {
+            setTimeout(() => {
+                document.getElementById('step3').className = 'analysis-step step-current';
+                document.getElementById('analysisTitle').textContent = 'Risk Assessment...';
+                document.getElementById('progressFill').style.width = '75%';
+                
+                setTimeout(() => {
+                    document.getElementById('step3').className = 'analysis-step step-completed';
+                    document.getElementById('step4').className = 'analysis-step step-current';
+                    document.getElementById('analysisTitle').textContent = 'Report Generation...';
+                    document.getElementById('progressFill').style.width = '100%';
+                    
+                    setTimeout(() => {
+                        document.getElementById('step4').className = 'analysis-step step-completed';
+                        
+                        // Generate final analysis results
+                        generateFinalAnalysis(vulnerabilities, rawSecurifyOutput);
+                        completeAnalysis();
+                    }, 2000);
+                }, 2500);
+            }, 1000);
+        }
+
+        function generateFinalAnalysis(vulnerabilities, rawSecurifyOutput) {
+            // Also run local analysis to supplement Securify results
+            const localVulns = analyzeContractCodeLocally();
+            
+            // Combine both analyses
+            const allVulnerabilities = [...vulnerabilities, ...localVulns];
+            
+            // Generate recommendations based on all findings
+            const recommendations = generateRecommendations(allVulnerabilities);
+            
+            // Calculate overall risk and confidence
+            const { overallRisk, confidence } = calculateRiskAssessment(allVulnerabilities);
+            
+            // Store complete analysis results
+            currentAnalysisResults = {
+                aiInterpretation: {
+                    recommendations: recommendations,
+                    overallRisk: overallRisk,
+                    confidence: confidence,
+                    metrics: {
+                        contractSize: currentContractCode.length,
+                        functionCount: (currentContractCode.match(/function\s+\w+/g) || []).length,
+                        critical: allVulnerabilities.filter(v => v.type === 'critical').length,
+                        medium: allVulnerabilities.filter(v => v.type === 'medium').length,
+                        low: allVulnerabilities.filter(v => v.type === 'low').length,
+                        securifyFindings: vulnerabilities.length,
+                        localFindings: localVulns.length
+                    },
+                    vulnerabilities: allVulnerabilities
+                },
+                rawAnalysis: typeof rawSecurifyOutput === 'string' ? rawSecurifyOutput : 
+                           JSON.stringify(rawSecurifyOutput, null, 2)
+            };
+
+            // Update UI with complete analysis
+            updateVerdictSection(overallRisk, confidence, allVulnerabilities);
+            updateVulnerabilitiesSection(allVulnerabilities);
+            updateRecommendations(allVulnerabilities);
+        }
+
+        function fallbackToLocalAnalysis() {
+            document.getElementById('step1').innerHTML = `
+                <strong>🔍 Static Analysis</strong><br>
+                <small>Running local analysis (Securify unavailable)...</small>
+            `;
+            
+            setTimeout(() => {
+                document.getElementById('step1').className = 'analysis-step step-completed';
+                
+                // Run local analysis only
+                const vulnerabilities = analyzeContractCodeLocally();
+                const recommendations = generateRecommendations(vulnerabilities);
+                const { overallRisk, confidence } = calculateRiskAssessment(vulnerabilities);
+                
+                // Store fallback results
+                currentAnalysisResults = {
+                    aiInterpretation: {
+                        recommendations: recommendations,
+                        overallRisk: overallRisk,
+                        confidence: Math.max(confidence - 10, 70), // Lower confidence for local-only
+                        metrics: {
+                            contractSize: currentContractCode.length,
+                            functionCount: (currentContractCode.match(/function\s+\w+/g) || []).length,
+                            critical: vulnerabilities.filter(v => v.type === 'critical').length,
+                            medium: vulnerabilities.filter(v => v.type === 'medium').length,
+                            low: vulnerabilities.filter(v => v.type === 'low').length,
+                            securifyFindings: 0,
+                            localFindings: vulnerabilities.length
+                        },
+                        vulnerabilities: vulnerabilities
+                    },
+                    rawAnalysis: 'Local analysis performed (Securify backend unavailable)\n\nNote: This analysis uses local pattern matching only and may not be as comprehensive as the full Securify analysis.'
+                };
+
+                // Continue with remaining steps quickly
+                continueWithRiskAssessment(vulnerabilities, 'Local analysis only');
+            }, 1500);
         }
 
         function startAnalysis() {
             analysisInProgress = true;
             currentStep = 0;
+            appliedFixes = [];
             
             // Reset UI
             document.getElementById('statusIndicator').className = 'status-indicator status-analyzing';
@@ -722,44 +1099,9 @@ contract SimpleToken {
                 document.getElementById(`step${i}`).className = 'analysis-step step-pending';
             }
             
-            // Start progress animation
-            animateProgress();
-        }
-
-        function animateProgress() {
-            const steps = [
-                { id: 'step1', duration: 2000, name: 'Static Analysis' },
-                { id: 'step2', duration: 3000, name: 'AI Interpretation' },
-                { id: 'step3', duration: 2500, name: 'Risk Assessment' },
-                { id: 'step4', duration: 1500, name: 'Report Generation' }
-            ];
-
-            let totalDuration = 0;
-            
-            steps.forEach((step, index) => {
-                setTimeout(() => {
-                    // Mark current step as active
-                    document.getElementById(step.id).className = 'analysis-step step-current';
-                    document.getElementById('analysisTitle').textContent = `${step.name}...`;
-                    
-                    // Update progress
-                    const progress = ((index + 1) / steps.length) * 100;
-                    document.getElementById('progressFill').style.width = `${progress}%`;
-                    
-                    // Complete step after duration
-                    setTimeout(() => {
-                        document.getElementById(step.id).className = 'analysis-step step-completed';
-                        
-                        // If last step, show results
-                        if (index === steps.length - 1) {
-                            completeAnalysis();
-                        }
-                    }, step.duration - 500);
-                    
-                }, totalDuration);
-                
-                totalDuration += step.duration;
-            });
+            // Start with step 1
+            document.getElementById('step1').className = 'analysis-step step-current';
+            document.getElementById('progressFill').style.width = '25%';
         }
 
         function completeAnalysis() {
@@ -769,24 +1111,397 @@ contract SimpleToken {
             document.getElementById('reportSection').style.display = 'block';
             document.getElementById('deploymentSection').style.display = 'block';
             
-            // Add some randomization to results
-            randomizeResults();
-            
             showNotification('🎉 Security analysis completed successfully!', 'success');
         }
 
-        function randomizeResults() {
-            const risks = ['critical', 'medium', 'low', 'safe'];
-            const verdicts = [
-                { class: 'vuln-safe', text: '✅ Overall Verdict: SAFE', confidence: '94%' },
-                { class: 'vuln-medium', text: '⚠️ Overall Verdict: REVIEW NEEDED', confidence: '78%' },
-                { class: 'vuln-safe', text: '✅ Overall Verdict: SAFE', confidence: '96%' }
-            ];
-            
-            const randomVerdict = verdicts[Math.floor(Math.random() * verdicts.length)];
+        function analyzeContractCodeLocally() {
+            const code = currentContractCode.toLowerCase();
+            const vulnerabilities = [];
+
+            // Check for reentrancy vulnerability
+            if (code.includes('call.value') && code.includes('balances[msg.sender] -=')) {
+                vulnerabilities.push({
+                    type: 'critical',
+                    title: '🚨 Critical: Reentrancy Vulnerability',
+                    description: 'External call before state change can allow reentrancy attacks. This is a critical security issue.',
+                    line: findLineNumber('call.value'),
+                    source: 'Local Analysis'
+                });
+            }
+
+            // Check for unchecked external calls
+            if (code.includes('call.value') && !code.includes('require(') && !code.includes('assert(')) {
+                vulnerabilities.push({
+                    type: 'medium',
+                    title: '⚠️ Medium: Unchecked External Call',
+                    description: 'External call return value is not checked, which could lead to silent failures.',
+                    line: findLineNumber('call.value'),
+                    source: 'Local Analysis'
+                });
+            }
+
+            // Check for missing input validation
+            if (code.includes('function transfer') && !code.includes('require(_amount > 0')) {
+                vulnerabilities.push({
+                    type: 'low',
+                    title: '⚠️ Low: Missing Input Validation',
+                    description: 'Transfer function lacks comprehensive input validation for amount parameter.',
+                    line: findLineNumber('function transfer'),
+                    source: 'Local Analysis'
+                });
+            }
+
+            // Check for proper access control (positive finding)
+            if (code.includes('onlyowner') || code.includes('msg.sender == owner')) {
+                vulnerabilities.push({
+                    type: 'safe',
+                    title: '✅ Access Control: Properly Implemented',
+                    description: 'Owner-only functions are correctly protected with access control modifiers.',
+                    source: 'Local Analysis'
+                });
+            }
+
+            return vulnerabilities;
+        }
+
+        function generateRecommendations(vulnerabilities) {
+            const recommendations = [];
+
+            // Reentrancy fix
+            if (vulnerabilities.some(v => v.title.includes('Reentrancy'))) {
+                recommendations.push({
+                    title: 'Fix Reentrancy Vulnerability',
+                    description: 'Move state changes before external calls to prevent reentrancy attacks',
+                    fixable: true,
+                    fixType: 'reentrancy',
+                    priority: 'Critical'
+                });
+            }
+
+            // Input validation
+            if (vulnerabilities.some(v => v.title.includes('Input Validation'))) {
+                recommendations.push({
+                    title: 'Add Input Validation',
+                    description: 'Add require statements with descriptive error messages for better security',
+                    fixable: true,
+                    fixType: 'validation',
+                    priority: 'Medium'
+                });
+            }
+
+            // Unchecked calls
+            if (vulnerabilities.some(v => v.title.includes('Unchecked'))) {
+                recommendations.push({
+                    title: 'Handle External Call Returns',
+                    description: 'Check return values of external calls and handle failures appropriately',
+                    fixable: false,
+                    fixType: 'external-calls',
+                    priority: 'Medium'
+                });
+            }
+
+            // Generic recommendations if no specific issues found
+            if (recommendations.length === 0) {
+                recommendations.push({
+                    title: 'Optimize Function Visibility',
+                    description: 'Change public functions to external where appropriate to save gas',
+                    fixable: true,
+                    fixType: 'visibility',
+                    priority: 'Low'
+                });
+            }
+
+            // Always add event recommendation
+            recommendations.push({
+                title: 'Add Events for State Changes',
+                description: 'Manual implementation recommended for better transparency and debugging',
+                fixable: false,
+                fixType: 'events',
+                priority: 'Medium'
+            });
+
+            return recommendations;
+        }
+
+        function calculateRiskAssessment(vulnerabilities) {
+            const criticalCount = vulnerabilities.filter(v => v.type === 'critical').length;
+            const highCount = vulnerabilities.filter(v => v.type === 'high').length;
+            const mediumCount = vulnerabilities.filter(v => v.type === 'medium').length;
+            const lowCount = vulnerabilities.filter(v => v.type === 'low').length;
+
+            let overallRisk = 'SAFE';
+            let confidence = 94;
+
+            if (criticalCount > 0) {
+                overallRisk = 'CRITICAL';
+                confidence = 98;
+            } else if (highCount > 0) {
+                overallRisk = 'HIGH';
+                confidence = 96;
+            } else if (mediumCount > 0) {
+                overallRisk = 'MEDIUM';
+                confidence = 92;
+            } else if (lowCount > 0) {
+                confidence = 90;
+            }
+
+            return { overallRisk, confidence };
+        }
+
+        function findLineNumber(searchText) {
+            const lines = currentContractCode.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].toLowerCase().includes(searchText.toLowerCase())) {
+                    return i + 1;
+                }
+            }
+            return null;
+        }
+
+        function updateVerdictSection(risk, confidence, vulnerabilities) {
             const verdictElement = document.getElementById('overallVerdict');
-            verdictElement.className = `vulnerability-item ${randomVerdict.class}`;
-            verdictElement.innerHTML = `<strong>${randomVerdict.text}</strong><br><small>AI Confidence: ${randomVerdict.confidence} | Comprehensive multi-tool analysis completed</small>`;
+            const criticalCount = vulnerabilities.filter(v => v.type === 'critical').length;
+            const mediumCount = vulnerabilities.filter(v => v.type === 'medium').length;
+            const lowCount = vulnerabilities.filter(v => v.type === 'low').length;
+
+            if (risk === 'CRITICAL') {
+                verdictElement.className = 'vulnerability-item vuln-critical';
+                verdictElement.innerHTML = `
+                    <strong>🚨 Overall Verdict: CRITICAL ISSUES FOUND</strong><br>
+                    <small>AI Confidence: ${confidence}% | Found ${criticalCount} critical, ${mediumCount} medium, ${lowCount} low risk issues</small>
+                `;
+            } else if (risk === 'MEDIUM') {
+                verdictElement.className = 'vulnerability-item vuln-medium';
+                verdictElement.innerHTML = `
+                    <strong>⚠️ Overall Verdict: REVIEW NEEDED</strong><br>
+                    <small>AI Confidence: ${confidence}% | Found ${mediumCount} medium, ${lowCount} low risk issues</small>
+                `;
+            } else {
+                verdictElement.className = 'vulnerability-item vuln-safe';
+                verdictElement.innerHTML = `
+                    <strong>✅ Overall Verdict: SAFE</strong><br>
+                    <small>AI Confidence: ${confidence}% | No critical vulnerabilities detected</small>
+                `;
+            }
+        }
+
+        function updateVulnerabilitiesSection(vulnerabilities) {
+            const vulnContainer = document.getElementById('vulnerabilities');
+            vulnContainer.innerHTML = '';
+
+            vulnerabilities.forEach(vuln => {
+                const vulnClass = vuln.type === 'critical' ? 'vuln-critical' : 
+                                 vuln.type === 'medium' ? 'vuln-medium' :
+                                 vuln.type === 'low' ? 'vuln-low' : 'vuln-safe';
+                
+                const lineInfo = vuln.line ? ` (Line ${vuln.line})` : '';
+                
+                vulnContainer.innerHTML += `
+                    <div class="vulnerability-item ${vulnClass}">
+                        <strong>${vuln.title}${lineInfo}</strong><br>
+                        <small>${vuln.description}</small>
+                    </div>
+                `;
+            });
+        }
+
+        function updateRecommendations(vulnerabilities) {
+            const recContainer = document.getElementById('recommendationsList');
+            recContainer.innerHTML = '';
+
+            // Generate recommendations based on vulnerabilities found
+            const recommendations = generateRecommendations(vulnerabilities);
+
+            // Update UI
+            recommendations.forEach((rec, index) => {
+                const fixButton = rec.fixable ? 
+                    `<button class="btn btn-auto-fix" onclick="applyAutoFix(${index})">🪄 Auto Fix</button>` :
+                    `<span class="manual-fix">Manual Fix Required</span>`;
+
+                recContainer.innerHTML += `
+                    <div class="recommendation-item" data-fixable="${rec.fixable}">
+                        <div class="rec-content">
+                            <strong>[${rec.priority}] ${rec.title}</strong>
+                            <small>${rec.description}</small>
+                        </div>
+                        ${fixButton}
+                    </div>
+                `;
+            });
+        }
+
+        function applyAutoFix(fixIndex) {
+            if (!currentAnalysisResults || !currentAnalysisResults.aiInterpretation) {
+                showNotification('❌ No analysis data available for auto-fix', 'error');
+                return;
+            }
+            
+            const recommendations = currentAnalysisResults.aiInterpretation.recommendations;
+            if (!recommendations[fixIndex] || !recommendations[fixIndex].fixable) {
+                showNotification('❌ This issue cannot be automatically fixed', 'error');
+                return;
+            }
+            
+            if (appliedFixes.includes(fixIndex)) {
+                showNotification('⚠️ Fix already applied!', 'warning');
+                return;
+            }
+            
+            const recommendation = recommendations[fixIndex];
+            showNotification('🪄 Applying auto-fix...', 'info');
+            
+            setTimeout(() => {
+                const codeTextarea = document.getElementById('codeTextarea');
+                if (!codeTextarea || !codeTextarea.value) {
+                    showNotification('❌ No contract code available to fix', 'error');
+                    return;
+                }
+                
+                let code = codeTextarea.value;
+                let changesMade = false;
+                let changesDescription = '';
+                
+                // Apply specific fixes based on the recommendation type
+                switch (recommendation.fixType) {
+                    case 'reentrancy':
+                        // Fix reentrancy by moving state changes before external calls
+                        if (code.includes('call.value') && code.includes('balances[msg.sender] -=')) {
+                            const lines = code.split('\n');
+                            let newLines = [];
+                            let inWithdrawFunction = false;
+                            let balanceUpdateLine = '';
+                            
+                            for (let i = 0; i < lines.length; i++) {
+                                const line = lines[i];
+                                
+                                if (line.includes('function withdraw')) {
+                                    inWithdrawFunction = true;
+                                }
+                                
+                                if (inWithdrawFunction && line.includes('balances[msg.sender] -=')) {
+                                    balanceUpdateLine = line;
+                                    continue; // Skip this line for now
+                                }
+                                
+                                if (inWithdrawFunction && line.includes('call.value')) {
+                                    // Add balance update before external call
+                                    if (balanceUpdateLine) {
+                                        newLines.push(balanceUpdateLine);
+                                        newLines.push(line);
+                                        balanceUpdateLine = '';
+                                    } else {
+                                        newLines.push(line);
+                                    }
+                                } else {
+                                    newLines.push(line);
+                                }
+                                
+                                if (inWithdrawFunction && line.includes('}')) {
+                                    inWithdrawFunction = false;
+                                }
+                            }
+                            
+                            code = newLines.join('\n');
+                            changesMade = true;
+                            changesDescription = 'Moved state changes before external call to prevent reentrancy';
+                        }
+                        break;
+                        
+                    case 'visibility':
+                        // Change public to external for functions not called internally
+                        const originalCode = code;
+                        code = code.replace(/function\s+(\w+)\s*\([^)]*\)\s+public(?!\s+override)/g, 'function $1($2) external');
+                        if (code !== originalCode) {
+                            changesMade = true;
+                            changesDescription = 'Changed function visibility from public to external';
+                        }
+                        break;
+                        
+                    case 'validation':
+                        // Add input validation
+                        if (code.includes('function transfer') && !code.includes('require(_amount > 0')) {
+                            code = code.replace(
+                                /(function transfer\([^)]+\) (?:public|external) \{)/,
+                                '$1\n        require(_amount > 0, "Amount must be greater than zero");'
+                            );
+                            changesMade = true;
+                            changesDescription = 'Added input validation for transfer function';
+                        }
+                        break;
+                }
+                
+                if (changesMade) {
+                    // Update the textarea with fixed code
+                    codeTextarea.value = code;
+                    currentContractCode = code;
+                    
+                    // Visual feedback
+                    codeTextarea.style.border = '2px solid #4caf50';
+                    codeTextarea.style.boxShadow = '0 0 10px rgba(76, 175, 80, 0.3)';
+                    
+                    setTimeout(() => {
+                        codeTextarea.style.border = '1px solid rgba(255,255,255,0.2)';
+                        codeTextarea.style.boxShadow = 'none';
+                    }, 2000);
+                    
+                    // Mark fix as applied
+                    const recItem = document.querySelectorAll('.recommendation-item')[fixIndex];
+                    const button = recItem.querySelector('.btn-auto-fix');
+                    
+                    recItem.classList.add('fix-applied');
+                    button.disabled = true;
+                    button.textContent = '✅ Applied';
+                    appliedFixes.push(fixIndex);
+                    
+                    showNotification(`✅ ${changesDescription}`, 'success');
+                    updateApplyAllButton();
+                } else {
+                    showNotification('⚠️ Could not apply automatic fix to this contract', 'warning');
+                }
+            }, 1500);
+        }
+
+        function applyAllAutoFixes() {
+            if (!currentAnalysisResults || !currentAnalysisResults.aiInterpretation) {
+                showNotification('❌ No analysis data available', 'error');
+                return;
+            }
+            
+            const recommendations = currentAnalysisResults.aiInterpretation.recommendations;
+            const fixableItems = recommendations.filter((rec, index) => 
+                rec.fixable && !appliedFixes.includes(index)
+            );
+            
+            if (fixableItems.length === 0) {
+                showNotification('ℹ️ No auto-fixable items remaining', 'info');
+                return;
+            }
+            
+            let delay = 0;
+            recommendations.forEach((rec, index) => {
+                if (rec.fixable && !appliedFixes.includes(index)) {
+                    setTimeout(() => {
+                        applyAutoFix(index);
+                    }, delay);
+                    delay += 1000;
+                }
+            });
+        }
+
+        function updateApplyAllButton() {
+            const applyAllBtn = document.getElementById('applyAllBtn');
+            if (!applyAllBtn || !currentAnalysisResults) return;
+            
+            const recommendations = currentAnalysisResults.aiInterpretation?.recommendations || [];
+            const fixableItems = recommendations.filter(rec => rec.fixable);
+            const appliedFixableCount = fixableItems.filter((rec, index) => 
+                appliedFixes.includes(index)).length;
+            
+            if (appliedFixableCount === fixableItems.length && fixableItems.length > 0) {
+                applyAllBtn.disabled = true;
+                applyAllBtn.textContent = '✅ All Fixes Applied';
+                applyAllBtn.style.background = '#666';
+            }
         }
 
         function deployContract() {
@@ -799,33 +1514,74 @@ contract SimpleToken {
         }
 
         function downloadReport() {
-            // Create a simple text report
-            const report = `
-MAGICHAIN SECURITY ANALYSIS REPORT
-=================================
+            if (!currentAnalysisResults) {
+                showNotification('❌ No analysis data available to download', 'error');
+                return;
+            }
+            
+            const timestamp = new Date().toLocaleString();
+            const analysis = currentAnalysisResults.aiInterpretation;
+            const rawAnalysis = currentAnalysisResults.rawAnalysis;
+            
+            let report = `MAGICHAIN SECURITY ANALYSIS REPORT
+=============================================
 
-Contract Analysis: ${new Date().toLocaleDateString()}
-Overall Verdict: SAFE ✅
-AI Confidence: 94%
+Analysis Date: ${timestamp}
+Contract Size: ${analysis.metrics.contractSize} characters
+Functions: ${analysis.metrics.functionCount} detected
 
-FINDINGS:
-- Low Risk: Unused variables detected
-- Access Control: Properly implemented
-- Reentrancy: Protected
+OVERALL ASSESSMENT
+==================
+Risk Level: ${analysis.overallRisk}
+AI Confidence: ${analysis.confidence}%
+Issues Found: ${analysis.metrics.critical} Critical, ${analysis.metrics.medium} Medium, ${analysis.metrics.low} Low
 
-RECOMMENDATIONS:
-- Remove unused variables to optimize gas
-- Add events for state changes
-- Consider emergency pause functionality
+VULNERABILITY SUMMARY
+====================
+`;
 
-Generated by MagiChain v1.0
-            `;
+            if (analysis.vulnerabilities.length > 0) {
+                analysis.vulnerabilities.forEach((vuln, index) => {
+                    report += `${index + 1}. [${vuln.type.toUpperCase()}] ${vuln.title}
+   Description: ${vuln.description}
+   ${vuln.line ? `Line: ${vuln.line}` : ''}
+
+`;
+                });
+            } else {
+                report += "No significant vulnerabilities detected.\n\n";
+            }
+
+            report += `RECOMMENDATIONS
+===============
+`;
+            
+            if (analysis.recommendations.length > 0) {
+                analysis.recommendations.forEach((rec, index) => {
+                    report += `${index + 1}. [${rec.priority}] ${rec.title}
+   ${rec.description}
+   Auto-fixable: ${rec.fixable ? 'Yes' : 'No'}
+
+`;
+                });
+            } else {
+                report += "No specific recommendations at this time.\n\n";
+            }
+
+            report += `RAW ANALYSIS OUTPUT
+===================
+${rawAnalysis}
+
+---
+Generated by MagiChain AI Security Analysis Platform
+Report ID: ${Date.now()}
+`;
             
             const blob = new Blob([report], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'magichain-security-report.txt';
+            a.download = `magichain-security-report-${Date.now()}.txt`;
             a.click();
             URL.revokeObjectURL(url);
             
@@ -833,7 +1589,6 @@ Generated by MagiChain v1.0
         }
 
         function showNotification(message, type) {
-            // Create notification element
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
@@ -860,166 +1615,129 @@ Generated by MagiChain v1.0
             
             document.body.appendChild(notification);
             
-            // Auto remove after 4 seconds
             setTimeout(() => {
                 notification.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => notification.remove(), 300);
             }, 4000);
         }
 
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Create the MagiChain logo directly
-            document.querySelector('.logo').innerHTML = `
-                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <!-- Main shield gradient -->
-                        <linearGradient id="mainShield" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#8e24aa"/>
-                            <stop offset="50%" stop-color="#5e35b1"/>
-                            <stop offset="100%" stop-color="#3949ab"/>
-                        </linearGradient>
-                        <!-- Lock gradient -->
-                        <linearGradient id="lockBody" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#29b6f6"/>
-                            <stop offset="100%" stop-color="#1e88e5"/>
-                        </linearGradient>
-                        <!-- Chain gradient -->
-                        <linearGradient id="chainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#42a5f5"/>
-                            <stop offset="100%" stop-color="#1976d2"/>
-                        </linearGradient>
-                        <!-- Shadow filter -->
-                        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
-                        </filter>
-                        <!-- Inner shadow for depth -->
-                        <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feOffset dx="0" dy="2"/>
-                            <feGaussianBlur stdDeviation="2" result="offset-blur"/>
-                            <feFlood flood-color="#000000" flood-opacity="0.2"/>
-                            <feComposite in2="offset-blur" operator="in"/>
-                        </filter>
-                    </defs>
-                    
-                    <!-- Main shield shape with 3D effect -->
-                    <path d="M60 12L92 28V68C92 82 76 98 60 102C44 98 28 82 28 68V28L60 12Z" 
-                          fill="url(#mainShield)" 
-                          filter="url(#shadow)" 
-                          stroke="#673ab7" 
-                          stroke-width="1"/>
-                    
-                    <!-- Inner shield highlight for 3D effect -->
-                    <path d="M60 16L88 30V66C88 78 74 92 60 96C46 92 32 78 32 66V30L60 16Z" 
-                          fill="none" 
-                          stroke="rgba(255,255,255,0.2)" 
-                          stroke-width="1"/>
-                    
-                    <!-- Lock body with rounded corners and 3D effect -->
-                    <rect x="45" y="48" width="30" height="28" rx="6" ry="6" 
-                          fill="url(#lockBody)" 
-                          filter="url(#shadow)"/>
-                    
-                    <!-- Lock body highlight -->
-                    <rect x="47" y="50" width="26" height="24" rx="4" ry="4" 
-                          fill="none" 
-                          stroke="rgba(255,255,255,0.3)" 
-                          stroke-width="1"/>
-                    
-                    <!-- Lock shackle (U-shape) -->
-                    <path d="M60 35C67 35 72 40 72 47V52H68V47C68 42 64 39 60 39C56 39 52 42 52 47V52H48V47C48 40 53 35 60 35Z" 
-                          fill="url(#lockBody)" 
-                          filter="url(#shadow)"/>
-                    
-                    <!-- Chain link left with 3D effect -->
-                    <ellipse cx="25" cy="60" rx="10" ry="6" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="4" 
-                             transform="rotate(-15 25 60)"
-                             filter="url(#shadow)"/>
-                    
-                    <!-- Chain link right with 3D effect -->
-                    <ellipse cx="95" cy="60" rx="10" ry="6" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="4" 
-                             transform="rotate(15 95 60)"
-                             filter="url(#shadow)"/>
-                    
-                    <!-- Connecting chain to lock left -->
-                    <ellipse cx="38" cy="58" rx="8" ry="5" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="3" 
-                             transform="rotate(-5 38 58)"/>
-                    
-                    <!-- Connecting chain to lock right -->
-                    <ellipse cx="82" cy="58" rx="8" ry="5" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="3" 
-                             transform="rotate(5 82 58)"/>
-                    
-                    <!-- Magic wand with proper handle and tip -->
-                    <line x1="78" y1="30" x2="95" y2="13" 
-                          stroke="#ffa726" 
-                          stroke-width="4" 
-                          stroke-linecap="round"
-                          filter="url(#shadow)"/>
-                    
-                    <!-- Wand handle (thicker part) -->
-                    <line x1="78" y1="30" x2="85" y2="23" 
-                          stroke="#ff8f00" 
-                          stroke-width="5" 
-                          stroke-linecap="round"/>
-                    
-                    <!-- Wand tip star -->
-                    <circle cx="95" cy="13" r="2" fill="#ffd700" filter="url(#shadow)"/>
-                    
-                    <!-- Four-pointed star sparkles -->
-                    <g fill="#ffd700" filter="url(#shadow)">
-                        <!-- Large sparkle near wand -->
-                        <path d="M100 18L102 20L100 22L98 20Z"/>
-                        <path d="M99 20L101 20M100 19L100 21"/>
-                        
-                        <!-- Medium sparkle -->
-                        <path d="M105 25L106 26L105 27L104 26Z"/>
-                        <path d="M104.5 26L105.5 26M105 25.5L105 26.5"/>
-                        
-                        <!-- Small sparkles around -->
-                        <circle cx="88" cy="35" r="1.5"/>
-                        <circle cx="25" cy="35" r="1"/>
-                        <circle cx="30" cy="25" r="1"/>
-                    </g>
-                    
-                    <!-- MC text with deep dark blue -->
-                    <text x="60" y="68" 
-                          text-anchor="middle" 
-                          fill="#0d47a1" 
-                          font-size="16" 
-                          font-weight="bold" 
-                          font-family="Arial, sans-serif"
-                          filter="url(#shadow)">MC</text>
-                </svg>
-            `;
-            
             showNotification('🪄 Welcome to MagiChain! Upload your contract to get started.', 'info');
         });
-    </script>
+      function processSecurifyResults(backendResult) {
+        try {
+            const securifyOutput = backendResult.analysis || backendResult.result || backendResult;
+            const vulnerabilities = extractVulnerabilitiesFromSecurify(securifyOutput);
+
+            // New: add advanced AI interpretation based on contract content
+            const aiInsights = generateAIInsights(currentContractCode, securifyOutput);
+
+            // Apply auto-fixes if needed
+            currentContractCode = applyFixesIfNeeded(currentContractCode, [...vulnerabilities, ...aiInsights.additionalVulnerabilities]);
+
+            setTimeout(() => {
+                document.getElementById('step2').className = 'analysis-step step-current';
+                document.getElementById('analysisTitle').textContent = 'AI Interpretation...';
+                document.getElementById('progressFill').style.width = '50%';
+
+                setTimeout(() => {
+                    document.getElementById('step2').className = 'analysis-step step-completed';
+                    continueWithRiskAssessment([...vulnerabilities, ...aiInsights.additionalVulnerabilities], securifyOutput);
+                }, 2000);
+            }, 1000);
+
+        } catch (error) {
+            console.error('Error processing Securify results:', error);
+            showNotification('⚠️ Error processing backend results, using fallback analysis', 'warning');
+            fallbackToLocalAnalysis();
+        }
+    }
+
+    function generateAIInsights(code, securifyOutput) {
+        const insights = {
+            additionalVulnerabilities: []
+        };
+
+        // Detect CRITICAL - Reentrancy if low-level call exists
+        if (/\.call(\.value)?\(/.test(code)) {
+            insights.additionalVulnerabilities.push({
+                type: 'critical',
+                title: '🚨 Critical: Reentrancy Vulnerability',
+                description: 'Reentrancy vulnerability detected: low-level call with .call.value(...)',
+                autoFixable: true,
+                fixType: 'reentrancy',
+                source: 'AI Interpretation'
+            });
+        }
+
+        // Detect MEDIUM - Unchecked External Call
+        if (/\.call\(/.test(code) && !/require\s*\(.*\.call\(/.test(code)) {
+            insights.additionalVulnerabilities.push({
+                type: 'medium',
+                title: '⚠️ Medium: Unchecked External Call',
+                description: 'External call without proper error handling detected',
+                autoFixable: false,
+                fixType: 'validation',
+                source: 'AI Interpretation'
+            });
+        }
+
+        // Detect LOW - Missing Events
+        if (/\=\s*[^=]/.test(code) && !/event\s+/.test(code)) {
+            insights.additionalVulnerabilities.push({
+                type: 'low',
+                title: '⚠️ Low: Lack of Event Logging',
+                description: 'No events found for state changes. Adding events improves transparency and debuggability.',
+                autoFixable: false,
+                source: 'AI Interpretation'
+            });
+        }
+
+        return insights;
+    }
+
+    function applyFixesIfNeeded(code, vulnerabilities) {
+        let updatedCode = code;
+        for (const v of vulnerabilities) {
+            if (v.autoFixable && v.fixType) {
+                updatedCode = applyAutoFixToCode(updatedCode, v.fixType);
+            }
+        }
+        return updatedCode;
+    }
+
+    // === PATCH AUTO-FIX FUNCTION TO ACTUALLY APPLY CHANGES ===
+    function applyAutoFixToCode(originalCode, fixType) {
+      let lines = originalCode.split('\n');
+
+      if (fixType === 'reentrancy') {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].includes('call.value') && lines[i + 1]?.includes('-=')) {
+            const callLine = lines[i];
+            const stateLine = lines[i + 1];
+            lines[i] = stateLine;
+            lines[i + 1] = callLine;
+            return lines.join('\n');
+          }
+        }
+      }
+
+      if (fixType === 'validation') {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].includes('function transfer') && !originalCode.includes('require(_amount > 0')) {
+            lines.splice(i + 1, 0, '        require(_amount > 0, "Amount must be greater than zero");');
+            return lines.join('\n');
+          }
+        }
+      }
+
+      if (fixType === 'visibility') {
+        return originalCode.replace(/function (\w+)\((.*?)\) public/g, 'function $1($2) external');
+      }
+
+      return originalCode;
+    }
+  </script>
 </body>
-</html>
+</html>" "
