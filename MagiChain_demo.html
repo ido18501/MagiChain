@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagiChain - Bulletproof Security. Zero Code Review.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f1729 0%, #1a237e 50%, #4a148c 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.3);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .brand {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #9c27b0 0%, #9c27b0 45%, #0d47a1 55%, #0d47a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #b39ddb;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #e1bee7;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .upload-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(156, 39, 176, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .upload-section:hover {
+            border-color: #9c27b0;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .upload-area {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #9c27b0;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-subtext {
+            color: #b39ddb;
+            font-size: 0.9rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #00bcd4, #0097a7);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+        }
+
+        .analysis-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-analyzing {
+            background: #ff9800;
+        }
+
+        .status-safe {
+            background: #4caf50;
+        }
+
+        .status-risky {
+            background: #ff5722;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .analysis-step {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .step-completed {
+            border-left-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .step-current {
+            border-left-color: #ff9800;
+            background: rgba(255, 152, 0, 0.1);
+        }
+
+        .step-pending {
+            border-left-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #9c27b0, #00bcd4);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 0;
+        }
+
+        .report-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .vulnerability-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .vuln-critical {
+            background: rgba(244, 67, 54, 0.1);
+            border-left-color: #f44336;
+        }
+
+        .vuln-medium {
+            background: rgba(255, 152, 0, 0.1);
+            border-left-color: #ff9800;
+        }
+
+        .vuln-low {
+            background: rgba(255, 235, 59, 0.1);
+            border-left-color: #ffeb3b;
+        }
+
+        .vuln-safe {
+            background: rgba(76, 175, 80, 0.1);
+            border-left-color: #4caf50;
+        }
+
+        .deployment-section {
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            display: none;
+        }
+
+        .code-preview {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .rec-content {
+            flex: 1;
+            color: #e1bee7;
+        }
+
+        .rec-content strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .rec-content small {
+            color: #b39ddb;
+        }
+
+        .btn-auto-fix {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            margin-left: 15px;
+        }
+
+        .btn-auto-fix:hover {
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-auto-fix:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .manual-fix {
+            color: #ff9800;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .recommendation-item[data-fixable="false"] {
+            border-left-color: #ff9800;
+        }
+
+        .recommendation-item[data-fixable="true"] {
+            border-left-color: #4caf50;
+        }
+
+        .fix-applied {
+            border-left-color: #2e7d32 !important;
+            background: rgba(76, 175, 80, 0.1) !important;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b39ddb;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .brand {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAH0AfQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="MagiChain Logo">
+            </div>
+            <h1 class="brand">MagiChain</h1>
+            <p class="tagline">🪄 Bulletproof Security. Zero Code Review.</p>
+            <p class="description">Upload a smart contract. Get a trusted AI-powered security verdict — instantly. Then, deploy with confidence — straight to Ethereum.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text">Drop your Solidity contract here</div>
+                    <div class="upload-subtext">or click to browse (.sol files)</div>
+                    <input type="file" id="fileInput" class="file-input" accept=".sol" onchange="handleFileUpload(event)">
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="pasteCode()">📋 Paste Code</button>
+                    <button class="btn btn-secondary" onclick="useDemo()">🎯 Use Demo Contract</button>
+                </div>
+                <div id="codeInput" style="display: none; margin-top: 20px;">
+                    <textarea id="codeTextarea" placeholder="Paste your Solidity code here..." style="width: 100%; height: 200px; background: #1a1a1a; color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 15px; font-family: monospace;"></textarea>
+                    <button class="btn" onclick="analyzeCode()" style="margin-top: 10px;">🔍 Analyze Code</button>
+                </div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-header">
+                    <div class="status-indicator status-analyzing" id="statusIndicator"></div>
+                    <h3 id="analysisTitle">Ready for Analysis</h3>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div id="analysisSteps">
+                    <div class="analysis-step step-pending" id="step1">
+                        <strong>🔍 Static Analysis</strong><br>
+                        <small>Scanning for vulnerabilities and security issues...</small>
+                    </div>
+                    <div class="analysis-step step-pending" id="step2">
+                        <strong>🧠 AI Interpretation</strong><br>
+                        <small>Analyzing vulnerabilities and patterns...</small>
+                    </div>
+                    <div class="analysis-step step-pending" id="step3">
+                        <strong>📊 Risk Assessment</strong><br>
+                        <small>Calculating confidence scores...</small>
+                    </div>
+                    <div class="analysis-step step-pending" id="step4">
+                        <strong>📋 Report Generation</strong><br>
+                        <small>Creating human-readable summary...</small>
+                    </div>
+                </div>
+
+                <div class="report-section" id="reportSection">
+                    <h3>🛡️ Security Analysis Report</h3>
+                    <div id="verdictSection">
+                        <div class="vulnerability-item vuln-safe" id="overallVerdict">
+                            <strong>✅ Overall Verdict: SAFE</strong><br>
+                            <small>AI Confidence: 94% | No critical vulnerabilities detected</small>
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin-top: 25px;">🔍 Detailed Findings:</h4>
+                    <div id="vulnerabilities">
+                        <div class="vulnerability-item vuln-low">
+                            <strong>⚠️ Low Risk: Unused Variables</strong><br>
+                            <small>Line 23: Variable 'tempVar' is declared but never used. Consider removing to optimize gas.</small>
+                        </div>
+                        <div class="vulnerability-item vuln-safe">
+                            <strong>✅ Access Control: Properly Implemented</strong><br>
+                            <small>Owner-only functions are correctly protected with onlyOwner modifier.</small>
+                        </div>
+                        <div class="vulnerability-item vuln-safe">
+                            <strong>✅ Reentrancy: Protected</strong><br>
+                            <small>No reentrancy vulnerabilities detected. Proper use of checks-effects-interactions pattern.</small>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <h4>🔧 AI Recommendations:</h4>
+                        <div id="recommendationsList">
+                            <div class="recommendation-item" data-fixable="true">
+                                <div class="rec-content">
+                                    <strong>Remove unused variables to optimize gas costs</strong>
+                                    <small>Found unused variables that can be safely removed</small>
+                                </div>
+                                <button class="btn btn-auto-fix" onclick="applyAutoFix(0)">🪄 Auto Fix</button>
+                            </div>
+                            <div class="recommendation-item" data-fixable="false">
+                                <div class="rec-content">
+                                    <strong>Add events for important state changes</strong>
+                                    <small>Manual implementation recommended for business logic</small>
+                                </div>
+                                <span class="manual-fix">Manual Fix Required</span>
+                            </div>
+                            <div class="recommendation-item" data-fixable="true">
+                                <div class="rec-content">
+                                    <strong>Add input validation with descriptive errors</strong>
+                                    <small>Can automatically add require statements</small>
+                                </div>
+                                <button class="btn btn-auto-fix" onclick="applyAutoFix(2)">🪄 Auto Fix</button>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <button class="btn btn-secondary" onclick="applyAllAutoFixes()" id="applyAllBtn">🪄 Apply All Auto-Fixes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deployment-section" id="deploymentSection">
+                    <h3>🚀 Ready for Deployment</h3>
+                    <p>Your contract has passed security analysis and is ready to deploy to Ethereum mainnet.</p>
+                    <button class="btn" onclick="deployContract()">Deploy to Ethereum</button>
+                    <button class="btn btn-secondary" onclick="downloadReport()">📄 Download Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Multi-Tool Analysis</h3>
+                <p>Combines multiple industry-standard security tools for comprehensive vulnerability scanning.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>AI Interpretation</h3>
+                <p>Advanced AI prioritizes real threats, explains issues clearly, and suggests actionable fixes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Get comprehensive security analysis in seconds, not hours or days.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>One-Click Deploy</h3>
+                <p>Deploy verified safe contracts directly to Ethereum with confidence.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 MagiChain. Securing the future of Web3, one contract at a time.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">🔗 Multi-chain support coming soon: Polygon, BSC, Arbitrum</p>
+        </footer>
+    </div>
+
+    <script>
+        let analysisInProgress = false;
+        let currentStep = 0;
+        let appliedFixes = [];
+
+        function applyAutoFix(fixIndex) {
+            const fixDescriptions = [
+                "Removed unused variables and optimized gas usage",
+                "Added events for state changes", 
+                "Added require statements with descriptive error messages"
+            ];
+            
+            if (appliedFixes.includes(fixIndex)) {
+                showNotification('⚠️ Fix already applied!', 'warning');
+                return;
+            }
+            
+            showNotification('🪄 Applying auto-fix...', 'info');
+            
+            setTimeout(() => {
+                const recItem = document.querySelectorAll('.recommendation-item')[fixIndex];
+                const button = recItem.querySelector('.btn-auto-fix');
+                
+                // Mark as applied
+                recItem.classList.add('fix-applied');
+                button.disabled = true;
+                button.textContent = '✅ Applied';
+                appliedFixes.push(fixIndex);
+                
+                // Apply actual code fixes
+                const codeTextarea = document.getElementById('codeTextarea');
+                if (codeTextarea && codeTextarea.value) {
+                    let code = codeTextarea.value;
+                    
+                    switch(fixIndex) {
+                        case 0: // Remove unused variables
+                            code = code.replace(/\s*uint256\s+tempVar;\s*\n?/g, '');
+                            code = code.replace(/\s*uint256\s+unusedVar;\s*\n?/g, '');
+                            code = code.replace(/\s*address\s+temp;\s*\n?/g, '');
+                            break;
+                            
+                        case 2: // Add require statements
+                            code = code.replace(
+                                /function transfer\(address _to, uint256 _amount\) public \{/g,
+                                `function transfer(address _to, uint256 _amount) public {
+        require(_to != address(0), "Invalid recipient address");
+        require(_amount > 0, "Amount must be greater than zero");`
+                            );
+                            break;
+                    }
+                    
+                    codeTextarea.value = code;
+                }
+                
+                showNotification(`✅ ${fixDescriptions[fixIndex]}`, 'success');
+                updateApplyAllButton();
+            }, 1500);
+        }
+
+        function applyAllAutoFixes() {
+            const fixableItems = document.querySelectorAll('.recommendation-item[data-fixable="true"]');
+            let delay = 0;
+            
+            fixableItems.forEach((item, index) => {
+                const actualIndex = Array.from(document.querySelectorAll('.recommendation-item')).indexOf(item);
+                
+                if (!appliedFixes.includes(actualIndex)) {
+                    setTimeout(() => {
+                        applyAutoFix(actualIndex);
+                    }, delay);
+                    delay += 800;
+                }
+            });
+        }
+
+        function updateApplyAllButton() {
+            const applyAllBtn = document.getElementById('applyAllBtn');
+            const fixableItems = document.querySelectorAll('.recommendation-item[data-fixable="true"]');
+            const appliedFixableCount = Array.from(fixableItems).filter(item => 
+                item.classList.contains('fix-applied')).length;
+            
+            if (appliedFixableCount === fixableItems.length) {
+                applyAllBtn.disabled = true;
+                applyAllBtn.textContent = '✅ All Fixes Applied';
+                applyAllBtn.style.background = '#666';
+            }
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.name.endsWith('.sol')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('codeTextarea').value = e.target.result;
+                    document.getElementById('codeInput').style.display = 'block';
+                    showNotification('✅ Contract loaded successfully!', 'success');
+                };
+                reader.readAsText(file);
+            } else {
+                showNotification('❌ Please upload a valid .sol file', 'error');
+            }
+        }
+
+        function pasteCode() {
+            document.getElementById('codeInput').style.display = 'block';
+            document.getElementById('codeTextarea').focus();
+        }
+
+        function useDemo() {
+            const demoCode = `// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SimpleToken {
+    mapping(address => uint256) public balances;
+    uint256 public totalSupply;
+    address public owner;
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not authorized");
+        _;
+    }
+    
+    constructor(uint256 _totalSupply) {
+        totalSupply = _totalSupply;
+        owner = msg.sender;
+        balances[msg.sender] = _totalSupply;
+    }
+    
+    function transfer(address _to, uint256 _amount) public {
+        require(balances[msg.sender] >= _amount, "Insufficient balance");
+        require(_to != address(0), "Invalid address");
+        
+        balances[msg.sender] -= _amount;
+        balances[_to] += _amount;
+    }
+    
+    function mint(address _to, uint256 _amount) public onlyOwner {
+        totalSupply += _amount;
+        balances[_to] += _amount;
+    }
+}`;
+            document.getElementById('codeTextarea').value = demoCode;
+            document.getElementById('codeInput').style.display = 'block';
+            showNotification('🎯 Demo contract loaded!', 'success');
+        }
+
+        function analyzeCode() {
+            const code = document.getElementById('codeTextarea').value.trim();
+            if (!code) {
+                showNotification('❌ Please provide code to analyze', 'error');
+                return;
+            }
+            
+            if (analysisInProgress) {
+                showNotification('⏳ Analysis already in progress', 'warning');
+                return;
+            }
+
+            startAnalysis();
+        }
+
+        function startAnalysis() {
+            analysisInProgress = true;
+            currentStep = 0;
+            
+            // Reset UI
+            document.getElementById('statusIndicator').className = 'status-indicator status-analyzing';
+            document.getElementById('analysisTitle').textContent = 'Analyzing Contract...';
+            document.getElementById('reportSection').style.display = 'none';
+            document.getElementById('deploymentSection').style.display = 'none';
+            
+            // Reset steps
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`step${i}`).className = 'analysis-step step-pending';
+            }
+            
+            // Start progress animation
+            animateProgress();
+        }
+
+        function animateProgress() {
+            const steps = [
+                { id: 'step1', duration: 2000, name: 'Static Analysis' },
+                { id: 'step2', duration: 3000, name: 'AI Interpretation' },
+                { id: 'step3', duration: 2500, name: 'Risk Assessment' },
+                { id: 'step4', duration: 1500, name: 'Report Generation' }
+            ];
+
+            let totalDuration = 0;
+            
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    // Mark current step as active
+                    document.getElementById(step.id).className = 'analysis-step step-current';
+                    document.getElementById('analysisTitle').textContent = `${step.name}...`;
+                    
+                    // Update progress
+                    const progress = ((index + 1) / steps.length) * 100;
+                    document.getElementById('progressFill').style.width = `${progress}%`;
+                    
+                    // Complete step after duration
+                    setTimeout(() => {
+                        document.getElementById(step.id).className = 'analysis-step step-completed';
+                        
+                        // If last step, show results
+                        if (index === steps.length - 1) {
+                            completeAnalysis();
+                        }
+                    }, step.duration - 500);
+                    
+                }, totalDuration);
+                
+                totalDuration += step.duration;
+            });
+        }
+
+        function completeAnalysis() {
+            analysisInProgress = false;
+            document.getElementById('statusIndicator').className = 'status-indicator status-safe';
+            document.getElementById('analysisTitle').textContent = 'Analysis Complete ✅';
+            document.getElementById('reportSection').style.display = 'block';
+            document.getElementById('deploymentSection').style.display = 'block';
+            
+            // Add some randomization to results
+            randomizeResults();
+            
+            showNotification('🎉 Security analysis completed successfully!', 'success');
+        }
+
+        function randomizeResults() {
+            const risks = ['critical', 'medium', 'low', 'safe'];
+            const verdicts = [
+                { class: 'vuln-safe', text: '✅ Overall Verdict: SAFE', confidence: '94%' },
+                { class: 'vuln-medium', text: '⚠️ Overall Verdict: REVIEW NEEDED', confidence: '78%' },
+                { class: 'vuln-safe', text: '✅ Overall Verdict: SAFE', confidence: '96%' }
+            ];
+            
+            const randomVerdict = verdicts[Math.floor(Math.random() * verdicts.length)];
+            const verdictElement = document.getElementById('overallVerdict');
+            verdictElement.className = `vulnerability-item ${randomVerdict.class}`;
+            verdictElement.innerHTML = `<strong>${randomVerdict.text}</strong><br><small>AI Confidence: ${randomVerdict.confidence} | Comprehensive multi-tool analysis completed</small>`;
+        }
+
+        function deployContract() {
+            showNotification('🚀 Initiating deployment to Ethereum mainnet...', 'info');
+            
+            setTimeout(() => {
+                const txHash = '0x' + Math.random().toString(16).substr(2, 64);
+                showNotification(`✅ Contract deployed! TX: ${txHash.substr(0, 10)}...`, 'success');
+            }, 3000);
+        }
+
+        function downloadReport() {
+            // Create a simple text report
+            const report = `
+MAGICHAIN SECURITY ANALYSIS REPORT
+=================================
+
+Contract Analysis: ${new Date().toLocaleDateString()}
+Overall Verdict: SAFE ✅
+AI Confidence: 94%
+
+FINDINGS:
+- Low Risk: Unused variables detected
+- Access Control: Properly implemented
+- Reentrancy: Protected
+
+RECOMMENDATIONS:
+- Remove unused variables to optimize gas
+- Add events for state changes
+- Consider emergency pause functionality
+
+Generated by MagiChain v1.0
+            `;
+            
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'magichain-security-report.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showNotification('📄 Security report downloaded!', 'success');
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            const colors = {
+                'success': 'background: linear-gradient(45deg, #4caf50, #45a049);',
+                'error': 'background: linear-gradient(45deg, #f44336, #d32f2f);',
+                'warning': 'background: linear-gradient(45deg, #ff9800, #f57c00);',
+                'info': 'background: linear-gradient(45deg, #2196f3, #1976d2);'
+            };
+            
+            notification.style.cssText += colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create the MagiChain logo directly
+            document.querySelector('.logo').innerHTML = `
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Main shield gradient -->
+                        <linearGradient id="mainShield" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8e24aa"/>
+                            <stop offset="50%" stop-color="#5e35b1"/>
+                            <stop offset="100%" stop-color="#3949ab"/>
+                        </linearGradient>
+                        <!-- Lock gradient -->
+                        <linearGradient id="lockBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#29b6f6"/>
+                            <stop offset="100%" stop-color="#1e88e5"/>
+                        </linearGradient>
+                        <!-- Chain gradient -->
+                        <linearGradient id="chainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#42a5f5"/>
+                            <stop offset="100%" stop-color="#1976d2"/>
+                        </linearGradient>
+                        <!-- Shadow filter -->
+                        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
+                        </filter>
+                        <!-- Inner shadow for depth -->
+                        <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feOffset dx="0" dy="2"/>
+                            <feGaussianBlur stdDeviation="2" result="offset-blur"/>
+                            <feFlood flood-color="#000000" flood-opacity="0.2"/>
+                            <feComposite in2="offset-blur" operator="in"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Main shield shape with 3D effect -->
+                    <path d="M60 12L92 28V68C92 82 76 98 60 102C44 98 28 82 28 68V28L60 12Z" 
+                          fill="url(#mainShield)" 
+                          filter="url(#shadow)" 
+                          stroke="#673ab7" 
+                          stroke-width="1"/>
+                    
+                    <!-- Inner shield highlight for 3D effect -->
+                    <path d="M60 16L88 30V66C88 78 74 92 60 96C46 92 32 78 32 66V30L60 16Z" 
+                          fill="none" 
+                          stroke="rgba(255,255,255,0.2)" 
+                          stroke-width="1"/>
+                    
+                    <!-- Lock body with rounded corners and 3D effect -->
+                    <rect x="45" y="48" width="30" height="28" rx="6" ry="6" 
+                          fill="url(#lockBody)" 
+                          filter="url(#shadow)"/>
+                    
+                    <!-- Lock body highlight -->
+                    <rect x="47" y="50" width="26" height="24" rx="4" ry="4" 
+                          fill="none" 
+                          stroke="rgba(255,255,255,0.3)" 
+                          stroke-width="1"/>
+                    
+                    <!-- Lock shackle (U-shape) -->
+                    <path d="M60 35C67 35 72 40 72 47V52H68V47C68 42 64 39 60 39C56 39 52 42 52 47V52H48V47C48 40 53 35 60 35Z" 
+                          fill="url(#lockBody)" 
+                          filter="url(#shadow)"/>
+                    
+                    <!-- Chain link left with 3D effect -->
+                    <ellipse cx="25" cy="60" rx="10" ry="6" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="4" 
+                             transform="rotate(-15 25 60)"
+                             filter="url(#shadow)"/>
+                    
+                    <!-- Chain link right with 3D effect -->
+                    <ellipse cx="95" cy="60" rx="10" ry="6" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="4" 
+                             transform="rotate(15 95 60)"
+                             filter="url(#shadow)"/>
+                    
+                    <!-- Connecting chain to lock left -->
+                    <ellipse cx="38" cy="58" rx="8" ry="5" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="3" 
+                             transform="rotate(-5 38 58)"/>
+                    
+                    <!-- Connecting chain to lock right -->
+                    <ellipse cx="82" cy="58" rx="8" ry="5" 
+                             fill="none" 
+                             stroke="url(#chainGrad)" 
+                             stroke-width="3" 
+                             transform="rotate(5 82 58)"/>
+                    
+                    <!-- Magic wand with proper handle and tip -->
+                    <line x1="78" y1="30" x2="95" y2="13" 
+                          stroke="#ffa726" 
+                          stroke-width="4" 
+                          stroke-linecap="round"
+                          filter="url(#shadow)"/>
+                    
+                    <!-- Wand handle (thicker part) -->
+                    <line x1="78" y1="30" x2="85" y2="23" 
+                          stroke="#ff8f00" 
+                          stroke-width="5" 
+                          stroke-linecap="round"/>
+                    
+                    <!-- Wand tip star -->
+                    <circle cx="95" cy="13" r="2" fill="#ffd700" filter="url(#shadow)"/>
+                    
+                    <!-- Four-pointed star sparkles -->
+                    <g fill="#ffd700" filter="url(#shadow)">
+                        <!-- Large sparkle near wand -->
+                        <path d="M100 18L102 20L100 22L98 20Z"/>
+                        <path d="M99 20L101 20M100 19L100 21"/>
+                        
+                        <!-- Medium sparkle -->
+                        <path d="M105 25L106 26L105 27L104 26Z"/>
+                        <path d="M104.5 26L105.5 26M105 25.5L105 26.5"/>
+                        
+                        <!-- Small sparkles around -->
+                        <circle cx="88" cy="35" r="1.5"/>
+                        <circle cx="25" cy="35" r="1"/>
+                        <circle cx="30" cy="25" r="1"/>
+                    </g>
+                    
+                    <!-- MC text with deep dark blue -->
+                    <text x="60" y="68" 
+                          text-anchor="middle" 
+                          fill="#0d47a1" 
+                          font-size="16" 
+                          font-weight="bold" 
+                          font-family="Arial, sans-serif"
+                          filter="url(#shadow)">MC</text>
+                </svg>
+            `;
+            
+            showNotification('🪄 Welcome to MagiChain! Upload your contract to get started.', 'info');
+        });
+    </script>
+</body>
+</html>
