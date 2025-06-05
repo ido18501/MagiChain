@@ -405,95 +405,10 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo">
-                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="mainShield" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#8e24aa"/>
-                            <stop offset="50%" stop-color="#5e35b1"/>
-                            <stop offset="100%" stop-color="#3949ab"/>
-                        </linearGradient>
-                        <linearGradient id="lockBody" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#29b6f6"/>
-                            <stop offset="100%" stop-color="#1e88e5"/>
-                        </linearGradient>
-                        <linearGradient id="chainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#42a5f5"/>
-                            <stop offset="100%" stop-color="#1976d2"/>
-                        </linearGradient>
-                        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
-                        </filter>
-                    </defs>
-                    <path d="M60 12L92 28V68C92 82 76 98 60 102C44 98 28 82 28 68V28L60 12Z" 
-                          fill="url(#mainShield)" 
-                          filter="url(#shadow)" 
-                          stroke="#673ab7" 
-                          stroke-width="1"/>
-                    <path d="M60 16L88 30V66C88 78 74 92 60 96C46 92 32 78 32 66V30L60 16Z" 
-                          fill="none" 
-                          stroke="rgba(255,255,255,0.2)" 
-                          stroke-width="1"/>
-                    <rect x="45" y="48" width="30" height="28" rx="6" ry="6" 
-                          fill="url(#lockBody)" 
-                          filter="url(#shadow)"/>
-                    <rect x="47" y="50" width="26" height="24" rx="4" ry="4" 
-                          fill="none" 
-                          stroke="rgba(255,255,255,0.3)" 
-                          stroke-width="1"/>
-                    <path d="M60 35C67 35 72 40 72 47V52H68V47C68 42 64 39 60 39C56 39 52 42 52 47V52H48V47C48 40 53 35 60 35Z" 
-                          fill="url(#lockBody)" 
-                          filter="url(#shadow)"/>
-                    <ellipse cx="25" cy="60" rx="10" ry="6" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="4" 
-                             transform="rotate(-15 25 60)"
-                             filter="url(#shadow)"/>
-                    <ellipse cx="95" cy="60" rx="10" ry="6" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="4" 
-                             transform="rotate(15 95 60)"
-                             filter="url(#shadow)"/>
-                    <ellipse cx="38" cy="58" rx="8" ry="5" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="3" 
-                             transform="rotate(-5 38 58)"/>
-                    <ellipse cx="82" cy="58" rx="8" ry="5" 
-                             fill="none" 
-                             stroke="url(#chainGrad)" 
-                             stroke-width="3" 
-                             transform="rotate(5 82 58)"/>
-                    <line x1="78" y1="30" x2="95" y2="13" 
-                          stroke="#ffa726" 
-                          stroke-width="4" 
-                          stroke-linecap="round"
-                          filter="url(#shadow)"/>
-                    <line x1="78" y1="30" x2="85" y2="23" 
-                          stroke="#ff8f00" 
-                          stroke-width="5" 
-                          stroke-linecap="round"/>
-                    <circle cx="95" cy="13" r="2" fill="#ffd700" filter="url(#shadow)"/>
-                    <g fill="#ffd700" filter="url(#shadow)">
-                        <path d="M100 18L102 20L100 22L98 20Z"/>
-                        <path d="M99 20L101 20M100 19L100 21"/>
-                        <path d="M105 25L106 26L105 27L104 26Z"/>
-                        <path d="M104.5 26L105.5 26M105 25.5L105 26.5"/>
-                        <circle cx="88" cy="35" r="1.5"/>
-                        <circle cx="25" cy="35" r="1"/>
-                        <circle cx="30" cy="25" r="1"/>
-                    </g>
-                    <text x="60" y="68" 
-                          text-anchor="middle" 
-                          fill="#0d47a1" 
-                          font-size="16" 
-                          font-weight="bold" 
-                          font-family="Arial, sans-serif"
-                          filter="url(#shadow)">MC</text>
-                </svg>
-            </div>
+            <div class="logo" style="background: none; box-shadow: none; width: 120px; height: 120px; margin: 0 auto 20px;">
+    <img src="logo.png" alt="MagiChain Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;">
+</div>
+
             <h1 class="brand">MagiChain</h1>
             <p class="tagline">🪄 AI-Powered Security. Instant Analysis.</p>
             <p class="description">Upload a smart contract and get comprehensive AI-driven security analysis instantly. Our advanced algorithms detect vulnerabilities, assess risks, and provide actionable recommendations.</p>
